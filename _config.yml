@@ -12,9 +12,10 @@ url: "https://1461077752-wq.github.io" # the base hostname & protocol for your s
 github_username: 1461077752-wq
 
 # Build settings
-theme: minima
+remote_theme: jekyll/minima
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Exclude from processing.
 exclude:
