@@ -4,12 +4,12 @@
 # which you are expected to set up once and rarely edit after that.
 
 title: 我的技术博客
-email: your-email@example.com
+email: 1461077752-wq@users.noreply.github.com
 description: >-
   分享技术文章和学习心得,记录编程成长之路
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://yourusername.github.io" # the base hostname & protocol for your site
-github_username: yourusername
+url: "https://1461077752-wq.github.io" # the base hostname & protocol for your site
+github_username: 1461077752-wq
 
 # Build settings
 theme: minima
