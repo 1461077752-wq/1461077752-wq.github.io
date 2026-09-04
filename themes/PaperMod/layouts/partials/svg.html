@@ -1,0 +1,7 @@
+{{- $icon_name := (printf "%s.svg" .name) -}}
+{{- $icon_path := (printf "icons/%s" $icon_name) -}}
+{{- with resources.Get $icon_path -}}
+    {{- .Content | safeHTML -}}
+{{- else -}}
+    <!-- Icon not found: {{ $icon_name }} -->
+{{- end -}}

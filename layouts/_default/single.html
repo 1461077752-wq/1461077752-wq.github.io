@@ -1,0 +1,55 @@
+{{- define "main" }}
+
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title entry-hint-parent">
+      {{ .Title }}
+      {{- if .Draft }}
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -50 100 100" width="35" fill="currentColor">
+          <path d="M10.2 14.24l28.16-9.7a2 2 0 0 1 2.52 1.26l.7 2.04a2 2 0 0 1-1.26 2.52l-28.16 9.7a2 2 0 0 1-2.52-1.26l-.7-2.04a2 2 0 0 1 1.26-2.52zm31.64-10.88l28.16-9.7a2 2 0 0 1 2.52 1.26l.7 2.04a2 2 0 0 1-1.26 2.52l-28.16 9.7a2 2 0 0 1-2.52-1.26l-.7-2.04a2 2 0 0 1 1.26-2.52zM9.5 30.5L87 3.5a2 2 0 0 1 2.5 1.2l.7 2a2 2 0 0 1-1.2 2.5L11.5 32.2a2 2 0 0 1-2.5-1.2l-.7-2a2 2 0 0 1 1.2-2.5z"/>
+        </svg>
+      </span>
+      {{- end }}
+    </h1>
+    {{- if not (.Param "hideMeta") }}
+    <div class="post-meta">
+      {{- partial "post_meta.html" . -}}
+      {{- partial "translation_list.html" . -}}
+      {{- partial "edit_post.html" . -}}
+      {{- partial "post_canonical.html" . -}}
+    </div>
+    {{- end }}
+  </header>
+  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+  {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
+  {{- if (.Param "ShowToc") }}
+  {{- partial "toc.html" . }}
+  {{- end }}
+
+  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  <footer class="post-footer">
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    <ul class="post-tags">
+      {{- range ($.GetTerms $tags) }}
+      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- if (.Param "ShowPostNavLinks") }}
+    {{- partial "post_nav_links.html" . }}
+    {{- end }}
+    {{- if (and .Site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
+    {{- partial "share_icons.html" . -}}
+    {{- end }}
+  </footer>
+</article>
+
+{{- end }}{{/* end main */}}

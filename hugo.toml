@@ -1,0 +1,74 @@
+baseURL = 'https://1461077752-wq.github.io/'
+languageCode = 'zh-CN'
+title = '我的技术博客'
+theme = 'PaperMod'
+
+# 启用 Git 信息
+enableGitInfo = true
+
+# 分页设置
+paginate = 10
+
+# 语法高亮
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+# 永久链接格式
+[permalinks]
+  posts = '/posts/:year/:month/:slug/'
+
+# 菜单配置
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 2
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 3
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/pages/about/"
+    weight = 4
+
+# PaperMod 主题配置
+[params]
+  defaultTheme = "auto"
+  ShowBreadCrumbs = true
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  comments = false
+  DateFormat = "2006-01-02"
+
+  # 社交链接
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/1461077752-wq"
+
+  # 编辑文章链接
+  [params.editPost]
+    URL = "https://github.com/1461077752-wq/1461077752-wq.github.io/tree/main/content"
+    Text = "编辑文章"
+    appendFilePath = true
+
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+# 输出格式
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

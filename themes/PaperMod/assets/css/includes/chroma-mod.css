@@ -1,0 +1,17 @@
+.chroma {
+    background-color: unset !important;
+}
+
+.chroma .hl {
+    display: block;
+    width: 100%;
+    background-color: rgba(100, 100, 100, 0.1);
+}
+
+.highlight {
+    overflow-x: auto;
+}
+
+.highlight div:first-child {
+    overflow-x: auto;
+}
