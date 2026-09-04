@@ -1,34 +1,18 @@
 {{- define "main" }}
 
-{{- if (eq .Site.Params.homeInfoParams "true") }}
-{{- partial "home_info.html" . }}
-{{- end }}
+{{- $pages := where site.RegularPages "Type" "posts" }}
+{{- $paginator := .Paginate $pages }}
 
-{{- $isntDefault := not (or (eq (trim $.Site.Params.contentTypeName " ") "posts") (eq (trim $.Site.Params.contentTypeName " ") "")) }}
-{{- $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
-
-{{- $PageContext := .Site }}
-{{- if .IsHome }}
-{{- $PageContext = .Site }}
-{{- else }}
-{{- $PageContext = . }}
-{{- end }}
-
-{{- with $PageContext.RegularPages }}
-{{- $paginator := .Paginate (where $PageContext.RegularPages "Type" $contentTypeName) }}
-
-{{- range $index, $page := $paginator.Pages }}
+{{- range $paginator.Pages }}
 <article class="post-entry">
   <header class="entry-header">
     <h2 class="entry-hint-parent">
       {{- .Title }}
     </h2>
   </header>
-  {{- if (ne $.Site.Params.hideSummary true)}}
   <div class="entry-content">
     <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
   </div>
-  {{- end }}
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}
   </footer>
@@ -40,14 +24,13 @@
 <footer class="page-footer">
   <nav class="pagination">
     {{- if $paginator.HasPrev }}
-    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" }}</a>
+    <a class="prev" href="{{ $paginator.Prev.URL }}">« 上一页</a>
     {{- end }}
     {{- if $paginator.HasNext }}
-    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} »</a>
+    <a class="next" href="{{ $paginator.Next.URL }}">下一页 »</a>
     {{- end }}
   </nav>
 </footer>
 {{- end }}
-{{- end }}
 
-{{- end }}{{/* end main */}}
+{{- end }}

@@ -9,30 +9,19 @@
 </header>
 {{- end }}
 
-{{- $pages := union .RegularPages .Sections }}
-{{- if .IsHome }}
-{{- $pages = .Site.RegularPages }}
-{{- end }}
-
+{{- $pages := .RegularPages }}
 {{- $paginator := .Paginate $pages }}
 
-{{- range $index, $page := $paginator.Pages }}
+{{- range $paginator.Pages }}
 <article class="post-entry">
   <header class="entry-header">
     <h2 class="entry-hint-parent">
       {{- .Title }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-      </span>
-      {{- end }}
     </h2>
   </header>
-  {{- if (ne $.Site.Params.hideSummary true)}}
   <div class="entry-content">
     <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
   </div>
-  {{- end }}
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}
   </footer>
@@ -44,10 +33,10 @@
 <footer class="page-footer">
   <nav class="pagination">
     {{- if $paginator.HasPrev }}
-    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" }}</a>
+    <a class="prev" href="{{ $paginator.Prev.URL }}">« 上一页</a>
     {{- end }}
     {{- if $paginator.HasNext }}
-    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} »</a>
+    <a class="next" href="{{ $paginator.Next.URL }}">下一页 »</a>
     {{- end }}
   </nav>
 </footer>
