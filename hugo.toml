@@ -7,7 +7,8 @@ theme = 'PaperMod'
 enableGitInfo = true
 
 # 分页设置
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 # 语法高亮
 pygmentsCodeFences = true
